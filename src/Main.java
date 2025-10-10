@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -10,7 +11,7 @@ public class Main {
   }
   public static void cargarMenuOpciones(){
     System.out.println("""
-        Ingrese un número para elegir una opción:
+        Menu PintaPartido
         0 - Finalizar el programa
         1 - Crear una Cancha
         2 - Listar Canchas
@@ -20,10 +21,9 @@ public class Main {
         """);
   }
   public static void elegirOpcionMenu(){
-    Scanner scanner = new Scanner(System.in);
-    int numeroOpcion = scanner.nextInt();
+    int numeroValido = validarNumeroElegido();
 
-    switch (numeroOpcion) {
+    switch (numeroValido) {
       case 0:
         System.out.println("Finalizar el programa");
         break;
@@ -35,4 +35,29 @@ public class Main {
         break;
     }
   }
+  public static int validarNumeroElegido(){
+    Scanner scanner = new Scanner(System.in);
+    int opcionMin = 0;
+    int opcionMax = 5;
+    int numeroValido;
+
+    while (true){
+      System.out.print("Ingrese un número para elegir una opción: ");
+      try {
+        int numeroOpcion = scanner.nextInt();
+        boolean estaNumeroOpciones = numeroOpcion >= opcionMin && numeroOpcion <= opcionMax;
+        if (estaNumeroOpciones) {
+          numeroValido = numeroOpcion;
+          break;
+        } else {
+          System.out.println("El número esta fuera del rango.");
+        }
+      }catch (InputMismatchException e){
+        System.out.println("Error, ingrese un número, no letras ni símbolos.");
+        scanner.nextLine();
+      }
+    }
+
+    return numeroValido;
+    }
 }
