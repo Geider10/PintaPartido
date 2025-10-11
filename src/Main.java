@@ -6,18 +6,18 @@ import java.util.Scanner;
 public class Main {
 
   public static void main(String[] args) {
-    cargarMenuOpciones();
+    cargarMenu();
     elegirOpcionMenu();
   }
-  public static void cargarMenuOpciones(){
+  public static void cargarMenu(){
     System.out.println("""
         Menu PintaPartido
         0 - Finalizar el programa
-        1 - Crear una Cancha
-        2 - Listar Canchas
-        3 - Buscar una Cancha por nombre
-        4 - Editar una Cancha
-        5 - Eliminar una Cancha
+        1 - Crear una reserva
+        2 - Listar reservas
+        3 - Buscar un complejo deportivo por nombre
+        4 - Editar datos general del complejo deportivo
+        5 - Cancelar reserva
         """);
   }
   public static void elegirOpcionMenu(){
