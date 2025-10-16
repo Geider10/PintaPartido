@@ -22,12 +22,15 @@ public class Main {
           negocio.addCourt(courts);
           cleanConsole();
         }
-        case 2 -> System.out.println("Listar Canchas");
+        case 2 -> {
+          negocio.getCourts(courts);
+          cleanConsole();
+        }
         case 3 -> System.out.println("Buscar un club por nombre");
         case 4 -> System.out.println("Editar datos de cancha");
         case 5 -> System.out.println("Eliminar cancha");
         case 0 -> {
-          System.out.println("Finalizar el programa");
+          System.out.println("Fin");
           break label;
         }
         default -> System.out.println("Opción incorrecta, intente de nuevo.");
@@ -63,7 +66,7 @@ public class Main {
           System.out.println("El número esta fuera del rango.");
         }
       }catch (InputMismatchException e){
-        System.out.println("Error, ingrese un número, no letras ni símbolos.");
+        System.out.println("Error,número ingresado invalido.");
         scanner.nextLine();
       }
     }
@@ -72,6 +75,7 @@ public class Main {
   }
   public static void cleanConsole(){
     Scanner scanner = new Scanner(System.in);
+    System.out.println();
     System.out.println("Pulse ENTER para continuar...");
     scanner.nextLine();
 

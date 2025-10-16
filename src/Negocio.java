@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import models.Category;
 import models.Court;
 
 public class Negocio {
@@ -15,16 +16,27 @@ public class Negocio {
         2 - Voley
         """);
     int numberEntered = scanner.nextInt();
-    int idCategory = getIdCourt(numberEntered);
-    int indexCourt = courts.size() + 1;
+    int idCourt = Court.getId();
+    int idCategory = getIdCategory(numberEntered);
 
-    courts.add(new Court(indexCourt, nameEntered, true,idCategory, 1));
+    courts.add(new Court(idCourt, nameEntered, true,idCategory, 1));
   }
-  private int getIdCourt(int numberEntered)  {
-    if (numberEntered == 1) return 1;
-    if (numberEntered == 2) return 2;
-    if (numberEntered == 3) return 3;
+  private int getIdCategory(int numberEntered)  {
+    if (numberEntered == 1) return numberEntered;
+    if (numberEntered == 2) return numberEntered;
+    if (numberEntered == 3) return numberEntered;
     return 1;
+  }
+  public void getCourts (ArrayList<Court> courts){
+    //ArrayList<Court> courtsEnabled = courts.stream()
+    int order = 1;
+    for (Court court : courts){
+      System.out.println(formatCourtData(order,court.getName()));
+      order++;
+    }
+  }
+  private String formatCourtData (int order, String name){
+    return String.format("%s - Nombre : %s", order, name);
   }
 
 }
