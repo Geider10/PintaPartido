@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import models.Category;
 import models.Court;
 
-public class Negocio {
+public class Business {
   public void addCourt(ArrayList<Court> courts){
     Scanner scanner = new Scanner(System.in);
 

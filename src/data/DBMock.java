@@ -11,7 +11,7 @@ import models.Reserve;
 import models.SportsClub;
 
 public class DBMock {
-  public ArrayList<SportsClub> getClubs(){
+  public static ArrayList<SportsClub> getClubs(){
     ArrayList<SportsClub> clubs = new ArrayList<>();
 
     clubs.add( new SportsClub(1, "Araoz Futbol", "Lisandro de la Torre 3851", "Villa Lugano, CABA"));
@@ -20,7 +20,7 @@ public class DBMock {
 
     return clubs;
   }
-  public ArrayList<Category> getCategories(){
+  public static ArrayList<Category> getCategories(){
     ArrayList<Category> categories = new ArrayList<>();
 
     categories.add( new Category(1, "Futbol"));
@@ -30,11 +30,11 @@ public class DBMock {
     return categories;
   }
 
-  public ArrayList<Court> getCourts (){
+  public static ArrayList<Court> getCourts (){
     ArrayList<Court> courts = new ArrayList<>();
 
-    courts.add( new Court(Court.getId(), "Cancha 1 5vs5", true, 1, 2));
-    courts.add( new Court(Court.getId(), "Cancha 2 5vs5", false, 1, 2));
+    courts.add( new Court(Court.getId(), "Cancha 1 5vs5", true, 1, 1));
+    courts.add( new Court(Court.getId(), "Cancha 2 5vs5", true, 1, 2));
     courts.add( new Court(Court.getId(), "Cancha 5vs5", true, 3, 2));
 
     return courts;

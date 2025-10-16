@@ -8,22 +8,21 @@ import models.Court;
 public class Main {
 
   public static void main(String[] args) {
-    DBMock db = new DBMock();
-    Negocio negocio = new Negocio();
-    ArrayList<Court> courts = db.getCourts();
+    Business business = new Business();
+    ArrayList<Court> courts = DBMock.getCourts();
 
     label:
     while (true){
-      cargarMenu();
-      int numeroValido = validarNumeroElegido();
+      loadMenu();
+      int numberEntered = validateNumberEntered();
 
-      switch (numeroValido) {
+      switch (numberEntered) {
         case 1 -> {
-          negocio.addCourt(courts);
+          business.addCourt(courts);
           cleanConsole();
         }
         case 2 -> {
-          negocio.getCourts(courts);
+          business.getCourts(courts);
           cleanConsole();
         }
         case 3 -> System.out.println("Buscar un club por nombre");
@@ -37,7 +36,7 @@ public class Main {
       }
     }
   }
-  public static void cargarMenu(){
+  public static void loadMenu(){
     System.out.println("""
         Menu PintaPartido
         0 - Finalizar el programa
@@ -48,19 +47,19 @@ public class Main {
         5 - Eliminar cancha
         """);
   }
-  public static int validarNumeroElegido(){
+  public static int validateNumberEntered(){
     Scanner scanner = new Scanner(System.in);
-    int opcionMin = 0;
-    int opcionMax = 5;
-    int numeroValido;
+    int minimumOption = 0;
+    int maximumOption = 5;
+    int numberValid;
 
     while (true){
-      System.out.print("Ingrese un número para elegir una opción: ");
+      System.out.print("Ingrese un número del menu (0-5): ");
       try {
-        int numeroOpcion = scanner.nextInt();
-        boolean estaNumeroOpciones = numeroOpcion >= opcionMin && numeroOpcion <= opcionMax;
-        if (estaNumeroOpciones) {
-          numeroValido = numeroOpcion;
+        int numberOption = scanner.nextInt();
+        boolean isOptionRange = numberOption >= minimumOption && numberOption <= maximumOption;
+        if (isOptionRange) {
+          numberValid = numberOption;
           break;
         } else {
           System.out.println("El número esta fuera del rango.");
@@ -71,7 +70,7 @@ public class Main {
       }
     }
 
-    return numeroValido;
+    return numberValid;
   }
   public static void cleanConsole(){
     Scanner scanner = new Scanner(System.in);
