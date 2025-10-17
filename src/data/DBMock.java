@@ -33,9 +33,9 @@ public class DBMock {
   public static ArrayList<Court> getCourts (){
     ArrayList<Court> courts = new ArrayList<>();
 
-    courts.add( new Court(Court.getId(), "Cancha 1 5vs5", true, 1, 1));
-    courts.add( new Court(Court.getId(), "Cancha 2 5vs5", true, 1, 2));
-    courts.add( new Court(Court.getId(), "Cancha 5vs5", true, 3, 2));
+    courts.add( new Court(Court.setId(), "Cancha 1 5vs5", true, 1, 1));
+    courts.add( new Court(Court.setId(), "Cancha 2 5vs5", true, 1, 2));
+    courts.add( new Court(Court.setId(), "Cancha 5vs5", true, 3, 2));
 
     return courts;
   }

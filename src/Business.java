@@ -1,41 +1,53 @@
+import data.DBMock;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Optional;
+import models.Category;
 import models.Court;
+import models.SportsClub;
 
 public class Business {
   public void addCourt(ArrayList<Court> courts){
-    Scanner scanner = new Scanner(System.in);
+    int id = Court.setId();
+    String name = Court.getNameByConsole();
+    boolean isVisible = Court.getVisibilityByConsole();
+    int idCategory = Court.getIdCategoryByConsole();
+    int idClub = Court.getIdClubByConsole();
 
-    System.out.print("Ingrese el nombre de la cancha: ");
-    String nameEntered = scanner.nextLine();
-    System.out.print("""
-        Eliga la categoria de la cancha
-        1 - Futbol
-        2 - Basquet
-        2 - Voley
-        """);
-    int numberEntered = scanner.nextInt();
-    int idCourt = Court.getId();
-    int idCategory = getIdCategory(numberEntered);
+    //TODO: crear metodo para validar consistencia de datos
+    //validateNewCourt(id, name, isVisible,idCategory, idClub);
+    courts.add(new Court(id, name, isVisible,idCategory, idClub));
+  }
+  //private void validateNewCourt (int id, String name, boolean isVisible, int idCategory, int idClub){}
 
-    courts.add(new Court(idCourt, nameEntered, true,idCategory, 1));
-  }
-  private int getIdCategory(int numberEntered)  {
-    if (numberEntered == 1) return numberEntered;
-    if (numberEntered == 2) return numberEntered;
-    if (numberEntered == 3) return numberEntered;
-    return 1;
-  }
   public void getCourts (ArrayList<Court> courts){
-    //ArrayList<Court> courtsEnabled = courts.stream()
     int order = 1;
     for (Court court : courts){
-      System.out.println(formatCourtData(order,court.getName()));
+      String nameCourt = court.getName();
+      String nameCategory = getNameCategoryById(court.getIdCategory());
+      String nameClub = getNameClubById(court.getIdClub());
+
+      String showCourt = Court.formatCourtData(order, nameCourt, nameCategory, nameClub);
+      //TODO: crear metodo para validar canchas segun filtros
+      System.out.println(showCourt);
       order++;
     }
   }
-  private String formatCourtData (int order, String name){
-    return String.format("%s - Nombre : %s", order, name);
+  private String getNameCategoryById(int idCategory){
+    ArrayList<Category> categories = DBMock.getCategories();
+    Optional<Category> category = categories.stream().filter(c -> c.getId() == idCategory).findFirst();
+    if (category.isPresent()){
+      return category.get().getName();
+    }else {
+      return "Futbol por defecto";
+    }
   }
-
+  private String getNameClubById(int idClub){
+    ArrayList<SportsClub> clubs = DBMock.getClubs();
+    Optional<SportsClub> club = clubs.stream().filter(c -> c.getId() == idClub).findFirst();
+    if(club.isPresent()){
+      return club.get().getName();
+    }else{
+      return "Cancha por defecto";
+    }
+  }
 }
