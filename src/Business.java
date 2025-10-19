@@ -38,10 +38,7 @@ public class Business {
     //actualizar la cancha en el listado
     this.getCourts(courts);
 
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Elegí una cancha por su indice: ");
-    int idEntered = scanner.nextInt();
-    Court court = getCourtById(idEntered, courts);
+    Court court = getCourtById(courts);
 
     String name = getNameCorutByConsole();
     boolean isVisible = getVisibilityCourtByConsole();
@@ -50,6 +47,16 @@ public class Business {
     court.setName(name);
     court.setVisibility(isVisible);
     court.setIdCategory(idCategory);
+  }
+  public void deleteCourt(ArrayList<Court> courts){
+    //listar las canchas
+    //elegir y obtener la cancha por id
+    //eliminar la cancha del listado
+    this.getCourts(courts);
+
+    Court court = getCourtById(courts);
+
+    courts.remove(court);
   }
   private String getNameCorutByConsole(){
     Scanner scanner = new Scanner(System.in);
@@ -112,8 +119,12 @@ public class Business {
       return "Club Larrazabl DEFAULT";
     }
   }
-  private Court getCourtById(int id, ArrayList<Court> courts){
-    Optional<Court> court = courts.stream().filter(c -> c.getId() == id).findFirst();
+  private Court getCourtById(ArrayList<Court> courts){
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Elegí una cancha por su indice: ");
+    int idEntered = scanner.nextInt();
+
+    Optional<Court> court = courts.stream().filter(c -> c.getId() == idEntered).findFirst();
     if (court.isPresent()){
       return court.get();
     }

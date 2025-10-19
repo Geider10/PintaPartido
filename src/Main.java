@@ -30,7 +30,9 @@ public class Main {
           business.updateCourt(courts);
           cleanConsole();
         }
-        case 5 -> System.out.println("Eliminar cancha");
+        case 5 -> {
+          business.deleteCourt(courts);
+        }
         case 0 -> {
           System.out.println("Fin");
           break label;
