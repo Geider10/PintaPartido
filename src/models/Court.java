@@ -2,78 +2,50 @@ package models;
 import java.util.Scanner;
 
 public class Court {
-  private static int id = 0;
+  private int id;
   private String name;
   private boolean isVisible;
   private int idCategory;
   private int idClub;
+  private static int nextId = 1;
 
-  public Court(int idCourt, String nameCourt, boolean isVisibleCourt, int idCategoryCourt, int idClubCourt){
-    id = idCourt;
-    name = nameCourt;
-    isVisible = isVisibleCourt;
-    idCategory = idCategoryCourt;
-    idClub = idClubCourt;
+  public Court(String nameCourt, boolean isVisibleCourt, int idCategoryCourt, int idClubCourt){
+    this.id = nextId;
+    this.setName(nameCourt);
+    this.setVisibility(isVisibleCourt);
+    this.setIdCategory(idCategoryCourt);
+    this.setIdClub(idClubCourt);
+
+    nextId++;
   }
 
   public int getId(){
-   return id;
+   return this.id;
   }
   public String getName(){
-    return name;
+    return this.name;
   }
-  public static int setId(){
-    id++;
-    return id;
+  public void setName(String name){
+    this.name = name;
+  }
+  public void setVisibility(boolean isVisible){
+    this.isVisible = isVisible;
   }
   public int getIdCategory(){
-    return idCategory;
+    return this.idCategory;
+  }
+  public void setIdCategory(int idCategory){
+    this.idCategory = idCategory;
   }
   public int getIdClub(){
-    return idClub;
+    return this.idClub;
   }
-  public static String getNameByConsole(){
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Ingrese el nombre de la cancha: ");
+  public void setIdClub(int idClub){
+    this.idClub = idClub;
+  }
 
-    return scanner.nextLine();
-  }
-  public static boolean getVisibilityByConsole(){
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("""
-        Elegí la visibilidad de la cancha:
-        1 - Visible
-        2 - Oculta
-        """);
-
-    int numberEntered = scanner.nextInt();
-    if (numberEntered == 1) return true;
-    return false;
-  }
-  public static int getIdCategoryByConsole(){
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("""
-        Elegí la categoría de la cancha:
-        1 - Futbol
-        2 - Basquet
-        3 - Voley
-        """);
-
-    return scanner.nextInt();
-  }
-  public static int getIdClubByConsole(){
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("""
-        Elegí el club de la cancha:
-        1 - Araoz Futbol
-        2 - Club Larrazabal
-        3 - El anden
-        """);
-
-    return scanner.nextInt();
-  }
-  public static String formatCourtData (int order, String nameCourt, String nameCategory, String nameClub){
-    return String.format("%s - Nombre de la cancha: %s, nombre del club: %s, la categoria es: %s", order, nameCourt, nameClub, nameCategory);
+  public static String formatCourtData (int id, String nameCourt, String nameCategory, String nameClub){
+    return String.format("%s - Nombre de la cancha: %s, la categoría es: %s y el club se llama: %s", id, nameCourt, nameCategory, nameClub);
   }
 
 }

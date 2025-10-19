@@ -26,7 +26,10 @@ public class Main {
           cleanConsole();
         }
         case 3 -> System.out.println("Buscar un club por nombre");
-        case 4 -> System.out.println("Editar datos de cancha");
+        case 4 -> {
+          business.updateCourt(courts);
+          cleanConsole();
+        }
         case 5 -> System.out.println("Eliminar cancha");
         case 0 -> {
           System.out.println("Fin");
@@ -43,7 +46,7 @@ public class Main {
         1 - Crear una cancha
         2 - Listar canchas
         3 - Buscar un club por nombre
-        4 - Editar datos cancha 
+        4 - Editar datos cancha
         5 - Eliminar cancha
         """);
   }
