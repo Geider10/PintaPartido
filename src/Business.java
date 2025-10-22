@@ -10,18 +10,27 @@ import models.Court;
 import models.SportsClub;
 
 public class Business {
-  public void addCourt(ArrayList<Court> courts){
+  private ArrayList<Court> courts;
+  public Business(ArrayList<Court> courts){
+    this.courts = courts;
+  }
+  /**
+   *Agrega una nueva cancha
+   */
+  public void addCourt(){
     String name = getTextByConsole("Ingrese el nombre de la cancha: ");
     boolean isVisible = getVisibilityCourtByConsole();
     int idCategory = getIdCategoryByConsole();
     int idClub = getIdClubByConsole();
 
-    courts.add(new Court(name, isVisible,idCategory, idClub));
+    this.courts.add(new Court(name, isVisible,idCategory, idClub));
   }
-
-  public void getCourts (ArrayList<Court> courts){
-    //TODO: crear metodo para validar canchas segun filtros del usuario
-    for (Court court : courts){
+  /**
+   * Obtiene y muestra todas las canchas alamacenadas
+   */
+  public void getCourts (){
+    //TODO: filtrar canchas segun parametros del usuario
+    for (Court court : this.courts){
       int id = court.getId();
       String nameCourt = court.getName();
       String nameCategory = getNameCategoryById(court.getIdCategory());
@@ -31,14 +40,18 @@ public class Business {
       System.out.println(showCourt);
     }
   }
-  public void updateCourt(ArrayList<Court> courts){
+
+  /**
+   * Actualiza los atributos de una cancha, si existe por ID
+   */
+  public void updateCourt(){
     //listar todas las cancchas
     //elegir y obetener la cancha por id
     //obtener datos cancha por consola
     //actualizar la cancha en el listado
-    this.getCourts(courts);
+    this.getCourts();
 
-    Court court = getCourtById(courts);
+    Court court = getCourtById(this.courts);
 
     String name = getTextByConsole("Ingrese el nombre de la cancha: ");
     boolean isVisible = getVisibilityCourtByConsole();
@@ -48,13 +61,20 @@ public class Business {
     court.setVisibility(isVisible);
     court.setIdCategory(idCategory);
   }
-  public void deleteCourt(ArrayList<Court> courts){
-    this.getCourts(courts);
 
-    Court court = getCourtById(courts);
+  /**
+   * Elimina una cancha, si existe por ID
+   */
+  public void deleteCourt(){
+    this.getCourts();
 
-    courts.remove(court);
+    Court court = getCourtById(this.courts);
+
+    this.courts.remove(court);
   }
+  /**
+   * Mostrar y buscar un club por un nombre flexible.
+   */
   public void getClubsByName(){
     String nameEntered = getTextByConsole("Ingrese el nombre del club: ");
     String formatName = formatTextForSearches(nameEntered);
@@ -91,11 +111,7 @@ public class Business {
         """);
 
     int numberEntered = scanner.nextInt();
-    if (numberEntered == 1) {
-      return true;
-    }else{
-      return false;
-    }
+    return numberEntered == 1;
   }
   private int getIdCategoryByConsole(){
     Scanner scanner = new Scanner(System.in);
@@ -143,9 +159,6 @@ public class Business {
     int idEntered = scanner.nextInt();
 
     Optional<Court> court = courts.stream().filter(c -> c.getId() == idEntered).findFirst();
-    if (court.isPresent()){
-      return court.get();
-    }
-    return null;
+    return court.orElse(null);
   }
 }

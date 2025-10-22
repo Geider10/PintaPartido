@@ -1,11 +1,20 @@
 package models;
-
+/**
+ * La clase SportsClub representa un club deportivo. El club tiene atributos.
+ */
 public class SportsClub {
   private int id;
   private String name;
   private String address;
   private String location;
 
+  /**
+   * Crea una instacia de club.
+   * @param idClub Un número entero para definir el ID del club.
+   * @param nameClub Una cadena de texto para definir el nombre del club.
+   * @param addressClub Una cadena de texto para definir la dirección del club.
+   * @param locationClub Una cadena de texto para definir el barrio y provincia del club.
+   */
   public SportsClub(int idClub, String nameClub, String addressClub, String locationClub){
     this.id = idClub;
     this.name = nameClub;

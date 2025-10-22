@@ -1,6 +1,8 @@
 package models;
-import java.util.Scanner;
 
+/**
+ * La clase Court representa una cancha. La cancha tiene atributos, pertenece a una Categoría y a un Club Deportivo.
+ */
 public class Court {
   private int id;
   private String name;
@@ -9,6 +11,13 @@ public class Court {
   private int idClub;
   private static int nextId = 1;
 
+  /**
+   * Crea una instacia de Cancha.
+   * @param nameCourt Una cadena de texto para definir el nombre de la cancha.
+   * @param isVisibleCourt Un boleando para definir la visibilidad de la cancha.
+   * @param idCategoryCourt Un número entero para definir el id de la categoría perteneciente.
+   * @param idClubCourt Un número entero para definir el id del Club perteneciente.
+   */
   public Court(String nameCourt, boolean isVisibleCourt, int idCategoryCourt, int idClubCourt){
     this.id = nextId;
     this.setName(nameCourt);

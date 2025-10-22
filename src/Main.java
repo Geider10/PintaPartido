@@ -8,8 +8,8 @@ import models.Court;
 public class Main {
 
   public static void main(String[] args) {
-    Business business = new Business();
     ArrayList<Court> courts = DBMock.getCourts();
+    Business business = new Business(courts);
 
     label://nombre del bucle
     while (true){
@@ -18,11 +18,11 @@ public class Main {
 
       switch (numberEntered) {
         case 1 -> {
-          business.addCourt(courts);
+          business.addCourt();
           cleanConsole();
         }
         case 2 -> {
-          business.getCourts(courts);
+          business.getCourts();
           cleanConsole();
         }
         case 3 -> {
@@ -30,11 +30,11 @@ public class Main {
           cleanConsole();
         }
         case 4 -> {
-          business.updateCourt(courts);
+          business.updateCourt();
           cleanConsole();
         }
         case 5 -> {
-          business.deleteCourt(courts);
+          business.deleteCourt();
           cleanConsole();
         }
         case 0 -> {
@@ -45,7 +45,7 @@ public class Main {
       }
     }
   }
-  public static void loadMenu(){
+  private static void loadMenu(){
     System.out.println("""
         Menu PintaPartido
         0 - Finalizar el programa
@@ -56,7 +56,7 @@ public class Main {
         5 - Eliminar cancha
         """);
   }
-  public static int validateNumberEntered(){
+  private static int validateNumberEntered(){
     Scanner scanner = new Scanner(System.in);
     int minimumOption = 0;
     int maximumOption = 5;
@@ -81,7 +81,7 @@ public class Main {
 
     return numberValid;
   }
-  public static void cleanConsole(){
+  private static void cleanConsole(){
     Scanner scanner = new Scanner(System.in);
     System.out.println();
     System.out.println("Pulse ENTER para continuar...");
