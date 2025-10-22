@@ -7,16 +7,21 @@ public class SportsClub {
   private String location;
 
   public SportsClub(int idClub, String nameClub, String addressClub, String locationClub){
-  id = idClub;
-  name = nameClub;
-  address = addressClub;
-  location = locationClub;
+    this.id = idClub;
+    this.name = nameClub;
+    this.address = addressClub;
+    this.location = locationClub;
   }
-
   public String getName(){
-    return name;
+    return this.name;
   }
   public int getId(){
-    return id;
+    return this.id;
+  }
+  public String getAddress(){
+    return this.address;
+  }
+  public static String formatClubData(String name, String address){
+    return String.format("Nombre del club: %s y la dirección es: %s",name, address);
   }
 }

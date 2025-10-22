@@ -5,14 +5,14 @@ public class Category {
   private String name;
 
   public Category (int idCategory, String nameCategory){
-    id = idCategory;
-    name = nameCategory;
+    this.id = idCategory;
+    this.name = nameCategory;
   }
 
   public int getId(){
-    return id;
+    return this.id;
   }
   public String getName(){
-    return name;
+    return this.name;
   }
 }

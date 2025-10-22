@@ -43,7 +43,7 @@ public class DBMock {
   public ArrayList<Reserve> getReserves(){
     ArrayList<Reserve> reserves = new ArrayList<>();
 
-    reserves.add( new Reserve(1, ReserveEnum.PAST, LocalDate.now(), LocalTime.now(), LocalTime.now(), LocalDateTime.now(), 1, 2));
+    reserves.add( new Reserve(1, ReserveEnum.ACTIVE, LocalDate.now(), LocalTime.now(), LocalTime.now(), LocalDateTime.now(), 1, 2));
     reserves.add( new Reserve(2, ReserveEnum.ACTIVE, LocalDate.now(), LocalTime.now(), LocalTime.now(), LocalDateTime.now(), 1, 3));
 
     return reserves;

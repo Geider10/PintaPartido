@@ -1,5 +1,8 @@
 import data.DBMock;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import models.Category;
@@ -8,19 +11,16 @@ import models.SportsClub;
 
 public class Business {
   public void addCourt(ArrayList<Court> courts){
-    String name = getNameCorutByConsole();
+    String name = getTextByConsole("Ingrese el nombre de la cancha: ");
     boolean isVisible = getVisibilityCourtByConsole();
     int idCategory = getIdCategoryByConsole();
     int idClub = getIdClubByConsole();
 
-    //TODO: crear metodo para validar consistencia de datos
-    //validateNewCourt(id, name, isVisible,idCategory, idClub);
     courts.add(new Court(name, isVisible,idCategory, idClub));
   }
-  //private void validateNewCourt (int id, String name, boolean isVisible, int idCategory, int idClub){}
 
   public void getCourts (ArrayList<Court> courts){
-    //TODO: crear metodo para validar canchas segun filtros
+    //TODO: crear metodo para validar canchas segun filtros del usuario
     for (Court court : courts){
       int id = court.getId();
       String nameCourt = court.getName();
@@ -40,7 +40,7 @@ public class Business {
 
     Court court = getCourtById(courts);
 
-    String name = getNameCorutByConsole();
+    String name = getTextByConsole("Ingrese el nombre de la cancha: ");
     boolean isVisible = getVisibilityCourtByConsole();
     int idCategory = getIdCategoryByConsole();
 
@@ -49,18 +49,36 @@ public class Business {
     court.setIdCategory(idCategory);
   }
   public void deleteCourt(ArrayList<Court> courts){
-    //listar las canchas
-    //elegir y obtener la cancha por id
-    //eliminar la cancha del listado
     this.getCourts(courts);
 
     Court court = getCourtById(courts);
 
     courts.remove(court);
   }
-  private String getNameCorutByConsole(){
+  public void getClubsByName(){
+    String nameEntered = getTextByConsole("Ingrese el nombre del club: ");
+    String formatName = formatTextForSearches(nameEntered);
+
+    List<SportsClub> clubs = DBMock.getClubs().stream().filter(c -> formatTextForSearches(c.getName()).contains(formatName)).toList();
+    if (clubs.isEmpty()){
+      System.out.print("No se encontraron clubes.");
+    }
+    else{
+      for(SportsClub club : clubs){
+        String showClub = SportsClub.formatClubData(club.getName(), club.getAddress());
+        System.out.println(showClub);
+      }
+    }
+  }
+  private String formatTextForSearches(String plainText){
+    return Normalizer.normalize(plainText, Form.NFD)
+        .replaceAll("\\p{M}","")
+        .toLowerCase()
+        .trim();
+  }
+  private String getTextByConsole(String messageInput){
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Ingrese el nombre de la cancha: ");
+    System.out.print(messageInput);
 
     return scanner.nextLine();
   }

@@ -25,13 +25,17 @@ public class Main {
           business.getCourts(courts);
           cleanConsole();
         }
-        case 3 -> System.out.println("Buscar un club por nombre");
+        case 3 -> {
+          business.getClubsByName();
+          cleanConsole();
+        }
         case 4 -> {
           business.updateCourt(courts);
           cleanConsole();
         }
         case 5 -> {
           business.deleteCourt(courts);
+          cleanConsole();
         }
         case 0 -> {
           System.out.println("Fin");

@@ -6,23 +6,23 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Reserve {
-  int id;
-  ReserveEnum status;
-  LocalDate reservationDate;
-  LocalTime hourStart;
-  LocalTime hourEnd;
-  LocalDateTime craetedDate;
-  int idUser;
-  int idClub;
+  private int id;
+  private ReserveEnum status;
+  private LocalDate reservationDate;
+  private LocalTime hourStart;
+  private LocalTime hourEnd;
+  private LocalDateTime craetedDate;
+  private int idUser;
+  private int idClub;
 
   public Reserve (int idReserve, ReserveEnum statusReserve, LocalDate dateReserve, LocalTime hourStartReserve, LocalTime hourEndReserve, LocalDateTime craetedDateReserve, int idUserReserve, int idClubReserve){
-    id = idReserve;
-    status  = statusReserve;
-    reservationDate = dateReserve;
-    hourStart = hourStartReserve;
-    hourEnd = hourEndReserve;
-    craetedDate = craetedDateReserve;
-    idUser = idUserReserve;
-    idClub = idClubReserve;
+    this.id = idReserve;
+    this.status  = statusReserve;
+    this.reservationDate = dateReserve;
+    this.hourStart = hourStartReserve;
+    this.hourEnd = hourEndReserve;
+    this.craetedDate = craetedDateReserve;
+    this.idUser = idUserReserve;
+    this.idClub = idClubReserve;
   }
 }

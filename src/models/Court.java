@@ -45,7 +45,7 @@ public class Court {
   }
 
   public static String formatCourtData (int id, String nameCourt, String nameCategory, String nameClub){
-    return String.format("%s - Nombre de la cancha: %s, la categoría es: %s y el club se llama: %s", id, nameCourt, nameCategory, nameClub);
+    return String.format("%d - Nombre de la cancha: %s, la categoría es: %s y el club se llama: %s", id, nameCourt, nameCategory, nameClub);
   }
 
 }
