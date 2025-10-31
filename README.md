@@ -1,8 +1,7 @@
-# Backend - PintaPartido 
+# Gestión_Canchas
 
 ## Descripción 
-EL Backend permite gestionar canchas, turnos disponibles y reservas. El cliente puede hacer reservas de canchas. Las funcionalidades y los casos de uso están inspirados en **Alquila tu cancha**. 
-Alquila tu cancha link: https://atcsports.io/
+Es una app para gestionar canchas por consola. Las funcionalidades y los casos de uso están inspirados en **Alquila tu cancha**. Link de la app: https://atcsports.io/
 
 ## Características de la Preentrega
 - Crear una cancha
@@ -12,22 +11,13 @@ Alquila tu cancha link: https://atcsports.io/
 - Eliminar una cancha
 
 
-## Funcionalidades por rol 
-**Usuario** (todavía no implementado)
-- Registrarse e iniciar sesión
-- Buscar y reservar canchas
-- Consultar turnos disponibles
-- Confirmar reservas
-- Realizar pagos con Mercado Pago
-
-
-**Admin** (todavía no implementado)
-- Gestionar canchas y horarios
-- Consultar reservas recibidas
-- Actualizar el estado de las reservas
-
-
 ## Tecnologias
-- Lenguaje: Java
+- Java 21
+- Scanner
+- POO + Enum
+
+
+## Buenas Practicas
 - Conventional Commits
 - JavaDoc
+- Manejo warnings y segurencias hint
